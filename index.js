@@ -27,27 +27,27 @@ app.listen(CONSTANTS.PORT, function(){
 app.use(express.static(__dirname + '/html'));
 
 // Routes :: Get Home data
-app.get('home',function(req, res){
+app.get('/home',function(req, res){
     home(req, res, connection);
 })
 
 // Routes :: Register user
-app.post('register', function (req, res){
+app.post('/register', function (req, res){
     register(req, res, connection);
 });
 
 // Routes :: Podcasts list
-app.get('podcasts', function(req, res){
+app.get('/podcasts', function(req, res){
     podcasts(req, res, connection);
 });
 
 // Routes :: Gateway submission
-app.post('submit', function(req, res){
+app.post('/submit', function(req, res){
     submitPayment(req, res, connection);
 });
 
 // Routes :: Gateway HTML
-app.get('gateway', function(req, res){
+app.get('/gateway', function(req, res){
 
     // Recevie userID -> set the cookie
     if(!req.query.userid)
