@@ -5,16 +5,13 @@ function register(req, res, connection){
     
              // Insert new user
              connection.query("INSERT INTO app_users SET ?",{
-
                 model:model,
                 subdate:subdate,
              },function(error, result){
 
                 if(error)
-                return res.sendStatus(404);
-
+                console.log(error);
                 return res.json({userid:result.insertId});
-
              });
 }
 module.exports = register;
