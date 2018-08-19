@@ -46,7 +46,12 @@ var updateMediaSize = function(media){
 }
 
 var updateRecord = function(id, size){
+    
+    // Round size to MB
+    size = size / 1000000;
+
     // Update record
+
     connection.query("UPDATE app_podcasts SET size = " + size + " WHERE id = '" + id + "'", function(error){
         if(error)
         console.log(error);
