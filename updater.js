@@ -47,7 +47,7 @@ var updateRecord = function(id, link, connecttion){
     }
 
     // Get download size
-    remote(CONSTANTS.RJ_BASE_URL + "/" + download_path, function(err, size) {
+    remote(CONSTANTS.RJ_CDN_URL + "/" + download_path, function(err, size) {
         
     // Update record
     connection.query("UPDATE app_podcasts WHERE id = '" + id + "' SET ?", {
