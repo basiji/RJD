@@ -50,7 +50,7 @@ var updateRecord = function(id, link, connecttion){
     remote(CONSTANTS.RJ_CDN_URL + "/" + download_path, function(err, size) {
         
     // Update record
-    connection.query("UPDATE app_podcasts WHERE id = '" + id + "' SET ?", {
+    connection.query("UPDATE app_podcasts SET ? WHERE id = '" + id + "'", {
     likes:clean(likes),
     dislikes:clean(dislikes),
     plays:clean(plays),
