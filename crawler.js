@@ -18,7 +18,7 @@ stream.on('finish',function(){
     var root = parser.parse(document.toString());
     var blocks = root.querySelectorAll("a.block_container");
     var block;
-    var title, episode, thumbnail, link;
+    var title, episode, thumbnail, link, likes, dislikes, plays;
     for (var i = 0; i < blocks.length; i++) {
     
     block = blocks[i];
@@ -27,7 +27,7 @@ stream.on('finish',function(){
     episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
     thumbnail =  block.childNodes[1].childNodes[1].rawAttrs.split('"')[1];
     link = block.rawAttrs.split('"')[1];
-
+    
     // Insert into DB
     connection.query("INSERT INTO app_podcasts SET ?", {
         title:title,
