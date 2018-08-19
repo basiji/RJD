@@ -34,11 +34,11 @@ var updateMediaSize = function(media){
                 
                 if(error) 
                     size = 0;
-                updateRecord(result.id, size);
+                updateRecord(media.id, size);
                     
             });
         else {
-            updateRecord(result.id, size);
+            updateRecord(media.id, size);
         }
             
         });
