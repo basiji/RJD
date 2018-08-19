@@ -18,7 +18,7 @@ connection.query("SELECT * FROM app_podcasts WHERE size = 0", function(error, re
     if(result.length === 0)
     return console.log('No query found.');
 
-    for (var i = 0; i < 1; i++){
+    for (var i = 0; i < result.length; i++){
         updateMediaSize(result[i]);
     }
 
