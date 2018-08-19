@@ -38,7 +38,7 @@ var updateRecord = function(id, link, connecttion){
     var plays = root.querySelector('span.number_of_downloads').childNodes[0].rawText.split(' ')[0];
     
     
-    // Download path, size
+    // Download path
     var scripts = root.querySelectorAll('script');
     for (var i = 0; i < scripts.length; i++){
         if(scripts[i].childNodes[0])
@@ -46,26 +46,21 @@ var updateRecord = function(id, link, connecttion){
                 var download_path = scripts[i].childNodes[0].rawText.split(';')[0].split('=')[1].split("'")[1] + ".mp3";
     }
 
-    // Get download size
-    remote(CONSTANTS.RJ_CDN_URL + "/" + download_path, function(err, size) {
-        
     // Update record
     connection.query("UPDATE app_podcasts SET ? WHERE id = '" + id + "'", {
     likes:clean(likes),
     dislikes:clean(dislikes),
     plays:clean(plays),
     download_path:download_path,
-    size:size
     }, function(error){
     
         if(error)
         console.log(error);
+        
         // Remove temp file
         fs.unlink(__dirname + '/tmp/' + id + ".html", function(){});
-    
-    }); // Insert record
 
-    }); // Remote get size
+    }); // Insert record
 
     }); // Stream finished 
 }
