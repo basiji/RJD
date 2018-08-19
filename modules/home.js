@@ -5,7 +5,7 @@ module.exports = function (req, res, connection){
     // 10 most liked -> popular
     // Receive list of shows
 
-    connection.query("SELECT * FROM app_podcasts ORDER BY id DESC LIMIT 20", function (error, result){
+    connection.query("SELECT * FROM app_podcasts ORDER BY episode DESC LIMIT 20", function (error, result){
 
         if(error)
         console.log(error);
