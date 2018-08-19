@@ -37,6 +37,7 @@ var updateRecord = function(id, link, connecttion){
     var dislikes = rates[1].childNodes[0].rawText.split(' ')[0];
     var plays = root.querySelector('span.number_of_downloads').childNodes[0].rawText.split(' ')[0];
     
+    
     // Download path, size
     var scripts = root.querySelectorAll('script');
     for (var i = 0; i < scripts.length; i++){
@@ -50,9 +51,9 @@ var updateRecord = function(id, link, connecttion){
         
     // Update record
     connection.query("UPDATE app_podcasts WHERE id = '" + id + "' SET ?", {
-    likes:likes,
-    dislikes:dislikes,
-    plays:plays,
+    likes:clean(likes),
+    dislikes:clean(dislikes),
+    plays:clean(plays),
     download_path:download_path,
     size:size
     }, function(error){
@@ -67,4 +68,10 @@ var updateRecord = function(id, link, connecttion){
     }); // Remote get size
 
     }); // Stream finished 
+}
+
+var clean = function(text){
+    var num = text.replace(',','');
+    num = parseInt(num);
+    return num;
 }
