@@ -4,7 +4,7 @@ var request = require('request');
 var mysql = require('mysql');
 var CONSTANTS = require(__dirname + '/modules/constants.js');
 var connection = mysql.createConnection(CONSTANTS.MySQL);
-var dubways_all_url = 'https://www.radiojavan.com/podcasts/browse/show/Dynatomix';
+var dubways_all_url = 'https://www.radiojavan.com/podcasts/browse/show/traffik';
 
 // Establish MySQL connection
 connection.connect(function(error){
