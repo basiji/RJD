@@ -10,7 +10,7 @@ connection.connect(function(error){
 });
 
 // Get Records
-connection.query("SELECT * FROM app_podcasts WHERE size = NULL", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE size = 0", function(error, result){
 
     if(error)
     return console.log(error);
