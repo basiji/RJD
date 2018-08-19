@@ -21,7 +21,7 @@ stream.on('finish',function(){
     var title, episode, thumbnail, link;
     for (var i = 0; i < blocks.length; i++) {
     
-        block = blocks[i];
+    block = blocks[i];
     // Get required information
     title =  block.childNodes[3].childNodes[1].childNodes[0].rawText;
     episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
@@ -32,7 +32,7 @@ stream.on('finish',function(){
     connection.query("INSERT INTO app_podcasts SET ?", {
         title:title,
         episode:episode,
-        thumbnail_path:thumbnail,
+        thumb_path:thumbnail,
         link:link
     }, function(error){
         if(error)
