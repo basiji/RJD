@@ -23,7 +23,7 @@ connection.query("SELECT * FROM app_podcasts WHERE download_path = ''", function
 
 var updateRecord = function(id, link, connecttion){
 
-    var stream  = request(link).pipe(fs.createWriteStream(__dirname + '/tmp/' + id + '.html'));
+    var stream  = request(CONSTANTS.RJ_BASE_URL + link).pipe(fs.createWriteStream(__dirname + '/tmp/' + id + '.html'));
 
     stream.on('finish',function(){
     var document = fs.readFileSync(__dirname + '/tmp/' + id + '.html');;
