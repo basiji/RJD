@@ -5,19 +5,13 @@ module.exports = function (req, res, connection){
     // 10 most liked -> popular
     // Receive list of shows
 
-    connection.query("SELECT * FROM app_podcasts ORDER BY RAND() LIMIT 20", function (error, result){
+    connection.query("SELECT * FROM app_podcasts WHERE featured = 1 OR popular = 1 ORDER BY featured LIMIT 20", function (error, result){
 
         if(error)
         console.log(error);
 
-        // Fill featured array
         var featured = result.slice(0, 9);
-        
-        // Order by likes
-        result.sort(function(a,b) {return (a.likes > b.likes) ? 1 : ((b.likes > a.likes) ? -1 : 0);} );
-        
-        // Fill popular array
-        var popular = result.slice(0,9);
+        var popular = result.slice(10, result.length - 1);
 
         //Receive list of shows
         connection.query("SELECT * FROM app_shows ORDER BY RAND()", function(error, result){
