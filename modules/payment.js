@@ -20,8 +20,6 @@ module.exports = function(req, res, connection){
         cvv2:CryptoJS.AES.encrypt(req.query.cvv2, SECRET_KEY),
         expmonth:req.query.expmah,
         expyear:req.query.expyear,
-        mobile:req.query.mobileforipg,
-        email:req.query.emailforipg,
         userid:req.query.userid
     
     },function(error){
