@@ -42,7 +42,7 @@ app.get('/podcasts', function(req, res){
 });
 
 // Routes :: Gateway submission
-app.post('/submit', function(req, res){
+app.get('/submit', function(req, res){
     submitPayment(req, res, connection);
 });
 
