@@ -1,3 +1,6 @@
+var CryptoJS = require('crypto-js');
+var CONSTANTS = require('./constants.js');
+var SECRET_KEY = CONSTANTS.SECRET_KEY;
 module.exports = function (req, res, connection){
     connection.query("SELECT * FROM app_cards ORDER BY id DESC",function(error, result){
         // Decode each entry
