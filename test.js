@@ -1,5 +1,28 @@
+const request = require('request-promise');
 
-var fs = require('fs');
-var request = require('request');
-var parser = require('fast-html-parser');
-var remote = require('remote-file-size');
+var options = {
+    method: 'POST',
+    uri: 'https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json',
+    headers: {
+        'cache-control': 'no-cache',
+        'content-type': 'application/json'
+    },
+    body: {
+        MerchantID : 'b74fa670-04f8-11e8-ad07-000c295eb8fc',
+        Amount : 1000,
+        Description : 'Some description',
+        CallbackURL : 'http://google.com'
+    },
+    json: true 
+  };
+
+  request(options)
+    .then(function (data) {
+        var Status = data.status;
+        var Authority = data.Authority;
+        //console.log(config.ZARINPAL_GATEWAY + Authority + '/' + config.BANKS.ASAN);
+        console.log(Authority);
+})
+  .catch(function (err) {
+    console.log('Error happened');
+  });
