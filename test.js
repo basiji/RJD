@@ -2,7 +2,7 @@ const request = require('request-promise');
 
 var options = {
     method: 'POST',
-    uri: 'https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json',
+    uri: 'https://www.zarinpal.com/pg/rest/WebGate/',
     headers: {
         'cache-control': 'no-cache',
         'content-type': 'application/json'
