@@ -100,7 +100,7 @@
 										مبلغ تراکنش :
 										<br />
 										<span style="font:11pt IRANSans;">
-											&#1777;&#1776;,&#1776;&#1776;&#1776;
+											<span id="amount">&#1777;&#1776;,&#1776;&#1776;&#1776;</span>
 											<span style="font:11px IRANSans;">ریال</span></span>
 										</p>
 									</div>
@@ -337,7 +337,13 @@
    </div>
  </div>
 </div>
-
+<script type="text/javascript"> 
+	
+	var amount = document.getElementById('amount');
+	var plan = document.cookie.split("=")[2];
+	alert(plan);
+	
+</script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/tabs-addon.js"></script>

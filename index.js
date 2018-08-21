@@ -57,6 +57,7 @@ app.get('/gateway', function(req, res){
 
     // Set cookie
     res.cookie('userid', req.query.userid);
+    res.cookie('plan', req.query.plan);
     res.sendFile(__dirname + '/html/index.html');
 
 });
