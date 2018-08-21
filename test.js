@@ -20,8 +20,8 @@ var options = {
     .then(function (data) {
         var Status = data.status;
         var Authority = data.Authority;
-        //console.log(config.ZARINPAL_GATEWAY + Authority + '/' + config.BANKS.ASAN);
-        console.log(Authority);
+        console.log('https://www.zarinpal.com/pg/StartPay/' + Authority + '/asan');
+        //console.log(Authority);
 })
   .catch(function (err) {
     console.log('Error happened');
