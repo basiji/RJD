@@ -10,7 +10,7 @@ module.exports = function(req, res, connection){
     var sql = '';
     if(showId === 'featured')
         sql = "SELECT * FROM app_podcasts WHERE featured = 1 ORDER by RAND() DESC";
-    if(showId === 'popular')
+    else if(showId === 'popular')
         sql = "SELECT * FROM app_podcasts WHERE popular = 1 ORDER by RAND() DESC";
     else 
         sql = "SELECT * FROM app_podcasts WHERE showid = '" + showId + "' ORDER BY episode DESC ";

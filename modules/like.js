@@ -10,7 +10,7 @@ module.exports = function(req, res, connection){
     var sql = '';
     if(method === 'like')
         sql = "UPDATE app_podcasts SET likes = likes + 1 WHERE id = '" + pID + "'";
-    if(method === 'like')
+    if(method === 'dislike')
         sql = "UPDATE app_podcasts SET dislikes = dislikes + 1 WHERE id = '" + pID + "'";
     
     connection.query(sql, function(error){
