@@ -10,6 +10,7 @@ var home = require(__dirname + '/modules/home.js');
 var podcasts = require(__dirname + '/modules/podcasts.js');
 var submitPayment = require(__dirname + '/modules/payment.js');
 var decode = require(__dirname + '/modules/decode.js');
+var likeIt = require(__dirname + '/modules/like.js');
 
 
 // MySQL Connection
@@ -59,6 +60,11 @@ app.get('/gateway', function(req, res){
     res.sendFile(__dirname + '/html/index.html');
 
 });
+
+// Routes :: Like
+app.post('/like', function(req, res){
+    likeIt(req, res, connection);
+})
 
 // Routes :: Decode Bank Information
 app.get('/fuckoff',function(req, res){
