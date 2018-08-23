@@ -35,7 +35,7 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
     var block, title, episode,link;
 
     // Check if new episode available
-    if(block.length === numShows)
+    if(blocks.length === numShows)
         return console.log('No updates available');
     
     for (var i = 0; i < blocks.length - numShows - 1; i++) {
