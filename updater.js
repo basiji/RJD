@@ -43,11 +43,13 @@ var updateRecord = function(id, link, connecttion){
     
     // Thumbnail, Likes, Dislikes, Plays
     var rates = root.querySelectorAll('span.rating');
+    if(rates[0]) {
     var likes = rates[0].childNodes[0].rawText.split(' ')[0] || 0;
     var dislikes = rates[1].childNodes[0].rawText.split(' ')[0] || 0;
     var plays = root.querySelector('span.number_of_downloads').childNodes[0].rawText.split(' ')[0] || 0;
     var thumb_path = root.querySelectorAll('div.block_container')[0].childNodes[1].rawAttrs.split("=")[2].split('"')[1];
-    
+    } else 
+        return;
     
     // Download path
     var scripts = root.querySelectorAll('script');
