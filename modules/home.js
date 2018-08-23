@@ -23,7 +23,8 @@ module.exports = function (req, res, connection){
             return res.json({
                 featured:featured,
                 popular:popular,
-                shows:result
+                shows:result,
+                buildnumber:2
             });
 
 
