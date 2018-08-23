@@ -1,3 +1,12 @@
+/* Downloader
+
+Information gathered: 
+
+1- media size
+2- media full url
+
+*/
+
 var mysql = require('mysql');
 var remote = require('remote-file-size');
 var CONSTANTS = require(__dirname + '/modules/constants.js');

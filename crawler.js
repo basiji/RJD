@@ -1,10 +1,15 @@
+/*  CRAWLER : Get all episodes of specific podcasts
+Information gathered : 
+1- title 
+2- episode
+3- link
+*/
 var fs = require('fs');
 var parser = require('fast-html-parser');
 var request = require('request');
 var mysql = require('mysql');
 var CONSTANTS = require(__dirname + '/modules/constants.js');
 var connection = mysql.createConnection(CONSTANTS.MySQL);
-var dubways_all_url = 'https://www.radiojavan.com/podcasts/browse/show/traffik';
 
 // Establish MySQL connection
 connection.connect(function(error){
@@ -12,51 +17,53 @@ connection.connect(function(error){
     console.log(error);
 });
 
-var stream  = request(dubways_all_url).pipe(fs.createWriteStream('temp.html'));
-stream.on('finish',function(){
+/* Get updating podcasts */
+connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIMIT 1", function(error, result){
+
+    if(error)
+    return console.log(error);
+
+    var show_url = result[0].url;
+    var showId = result[0].id;
+    var numShows = result[0].numshows;
+    
+    var stream  = request(show_url).pipe(fs.createWriteStream('temp.html'));
+    stream.on('finish',function(){
     var document = fs.readFileSync('temp.html');
     var root = parser.parse(document.toString());
     var blocks = root.querySelectorAll("a.block_container");
-    var block;
-    var title, episode, thumbnail, link, likes, dislikes, plays;
-    for (var i = 0; i < blocks.length; i++) {
+    var block, title, episode,link;
+
+    // Check if new episode available
+    if(block.length === numShows)
+        return console.log('No updates available');
+    
+    for (var i = 0; i < blocks.length - numShows - 1; i++) {
     
     block = blocks[i];
     // Get required information
     title =  block.childNodes[3].childNodes[1].childNodes[0].rawText;
     episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
-    thumbnail =  block.childNodes[1].childNodes[1].rawAttrs.split('"')[1];
     link = block.rawAttrs.split('"')[1];
     
     // Insert into DB
     connection.query("INSERT INTO app_podcasts SET ?", {
         title:title,
         episode:episode,
-        thumb_path:thumbnail,
-        link:link
-    }, function(error){
+        link:link,
+        showid:showId
+        }, function(error){
         if(error)
-        console.log(error);
-    });
-} 
-});
+        console.log(error);}); 
+    }   
 
-
-// Extract audio from episode page
-var getPodcastAudio = function (url, htmlname){
-    var stream  = request(url).pipe(fs.createWriteStream(htmlname));
-    stream.on('finish', function (){
-        var document = fs.readFileSync(htmlname);
-        var root = parser.parse(document.toString(), {
-        script:true
+        // Update shownum
+        connection.query("UPDATE app_shows SET updating = 0, numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
+            if(error)
+            console.log(error);
         });
-        var block = root.querySelectorAll('script')[9];
-        console.log("Audio url : " + block.childNodes[0].rawText.split('=')[1].split("'")[1] + ".mp3" + "\n");
-        //fs.unlink(htmlname, function(){
-            
-        //});
-    });
-}
 
+    }); // stream on finish
+    }); // receive updating show
 
 

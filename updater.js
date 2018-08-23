@@ -1,3 +1,13 @@
+/* UPDATER 
+
+Information gathered : 
+1- thumbnail
+2- likes
+3- dislikes
+4- plays
+5- media url
+
+*/
 var fs = require('fs');
 var request = require('request');
 var parser = require('fast-html-parser');
@@ -31,11 +41,12 @@ var updateRecord = function(id, link, connecttion){
         script:true
     });
     
-    // Likes, Dislikes, Plays
+    // Thumbnail, Likes, Dislikes, Plays
     var rates = root.querySelectorAll('span.rating');
     var likes = rates[0].childNodes[0].rawText.split(' ')[0];
     var dislikes = rates[1].childNodes[0].rawText.split(' ')[0];
     var plays = root.querySelector('span.number_of_downloads').childNodes[0].rawText.split(' ')[0];
+    var thumb_path = '';
     
     
     // Download path
@@ -51,7 +62,8 @@ var updateRecord = function(id, link, connecttion){
     likes:clean(likes),
     dislikes:clean(dislikes),
     plays:clean(plays),
-    download_path:download_path,
+    thumb_path:thumb_path,
+    download_path:download_path
     }, function(error){
     
         if(error)
