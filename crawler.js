@@ -58,7 +58,7 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
     }   
 
         // Update shownum
-        connection.query("UPDATE app_shows SET updating = 0, numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
+        connection.query("UPDATE app_shows SET updated = 1, numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
             if(error)
             console.log(error);
         });
