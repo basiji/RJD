@@ -43,7 +43,7 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
     
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-            console.log(body);
+            console.log(body.result);
 });
 
 
