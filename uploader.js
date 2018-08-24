@@ -46,17 +46,22 @@ function uploader (podcast, callback){
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
         else {
-            var response = JSON.parse(body);
-            var result = '';
-            if(response.result === 'success')
-            connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
-                if(error)
-                result = error;
-                else
-                result = 'success';
-                callback(podcast.title + "(" + podcast.episode + ")", result);
-                
-            });
+            try {
+                var response = JSON.parse(body);
+                var result = '';
+                if(response.result === 'success')
+                connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                    if(error)
+                    result = error;
+                    else
+                    result = 'success';
+                    callback(podcast.title + "(" + podcast.episode + ")", result);
+                    
+                });    
+            } catch (error) {
+                return;
+            }
+            
         }
 });
 }
