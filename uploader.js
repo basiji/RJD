@@ -22,7 +22,7 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
 
    for (var i = 0; i < result.length; i ++) {
        uploader(result[i], function(title, episode){
-           console.log(title + "(" + episode + ") -> updated.");
+           console.log(title + " -> " + episode);
        });
    }
 });
@@ -51,7 +51,8 @@ function uploader (podcast, callback){
                 if(error)
                 console.log(error);
                 else
-                callback(podcast.title, podcast.episode);
+                //callback(podcast.title, podcast.episode);
+                console.log(podcast.title, body);
             });
         }
 });
