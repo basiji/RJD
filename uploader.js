@@ -18,11 +18,11 @@ connection.connect(function(error){
 });
 
 // Get list of not uploaded media (5 items)
-connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 20", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 1", function(error, result){
 
    for (var i = 0; i < result.length; i ++) {
-       uploader(result[i], function(title, episode){
-           console.log(title + " -> " + episode);
+       uploader(result[i], function(title, result){
+           console.log(title + " -> " + result);
        });
    }
 });
@@ -46,13 +46,16 @@ function uploader (podcast, callback){
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
         else {
-            // Update podcasts download path and upload status
+            var response = JSON.parse(body);
+            var result = '';
+            if(response.result === 'success')
             connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
                 if(error)
-                console.log(error);
+                result = error;
                 else
-                //callback(podcast.title, podcast.episode);
-                console.log(podcast.title, body);
+                result = 'success';
+                callback(podcast.title + "(" + podcast.episode + ")", result);
+                
             });
         }
 });
