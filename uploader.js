@@ -31,7 +31,7 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
             method: 'POST',
             url: 'http://api.parsaspace.com/v1/remote/new',
             headers:{
-                authorization: 'Bearer ' + CONSTANTS.PARSASPACE_TOKEN},
+                authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
                 form:{
                     checkid: podcast.id,
                     path: '/podcasts/',
@@ -43,7 +43,15 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
     
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-            console.log(body.result);
+            else {
+                // Update podcasts download path and upload status
+                connection.query("UPDATE app_podcasts SET download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id, function (error){
+                    if(error)
+                    console.log(error);
+                    else
+                    console.log(podcast.title + "(" + podcast.episode + ") -> uploaded!");   
+                });
+            }
 });
 
 
