@@ -20,11 +20,21 @@ connection.connect(function(error){
 // Get list of not uploaded media (5 items)
 connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 100", function(error, result){
 
-   for (var i = 0; i < result.length; i ++) {
-       uploader(result[i], function(title, result){
-           console.log(title + " -> " + result);
-       });
-   }
+    var i = 0;                     
+    function myLoop () {           
+    setTimeout(function () {    
+        uploader(result[i], function(title, result){
+            console.log(title + " -> " + result);
+        });
+        i++;                     
+        if (i < result.length) {            
+            myLoop();             
+        }                        
+    }, 3000)
+}
+
+myLoop();       
+
 });
 
 function uploader (podcast, callback){
