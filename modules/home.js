@@ -10,16 +10,6 @@ module.exports = function (req, res, connection){
         if(error)
         console.log(error);
 
-        for (var i = 0; i < result.length; i++){
-                
-            if(result[i].ps_download_path !== '')
-                    result[i].download_path = result[i].ps_download_path;
-                
-            if(result[i].ps_thumb_path !== '')
-                result[i].thumb_path = result[i].ps_thumb_path;
-                
-        }
-
         var popular = result.slice(0, 9);
         var featured = result.slice(10, result.length - 1);
 
