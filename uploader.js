@@ -18,7 +18,7 @@ connection.connect(function(error){
 });
 
 // Get list of not uploaded media (5 items)
-connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 100", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 5", function(error, result){
 
    for (var i = 0; i < result.length; i ++) {
        uploader(result[i], function(title, result){
