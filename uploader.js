@@ -47,7 +47,7 @@ function uploader (podcast, callback){
             form:{
                 checkid: podcast.id,
                 path: '/thumbnails/',
-                url: podcast.download_path,
+                url: podcast.thumb_path,
                 domain: 'rc.parsaspace.com' ,
                 filename: podcast.id + ".jpg"
             } 
