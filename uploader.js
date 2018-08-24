@@ -18,7 +18,7 @@ connection.connect(function(error){
 });
 
 // Get list of not uploaded media (5 items)
-connection.query("SELECT * FROM app_podcasts WHERE ps_download_path = '' ORDER BY id DESC LIMIT 200", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE ps_thumb_path = '' ORDER BY id DESC LIMIT 200", function(error, result){
 
     var i = 0;                     
     function myLoop () {           
@@ -46,10 +46,10 @@ function uploader (podcast, callback){
             authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
             form:{
                 checkid: podcast.id,
-                path: '/podcasts/',
+                path: '/thumbnails/',
                 url: podcast.download_path,
                 domain: 'rc.parsaspace.com' ,
-                filename: podcast.id + ".mp3"
+                filename: podcast.id + ".jpg"
             } 
         };
 
@@ -60,7 +60,7 @@ function uploader (podcast, callback){
                 var response = JSON.parse(body);
                 var result = '';
                 if(response.result === 'success')
-                connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                connection.query("UPDATE app_podcasts SET ps_thumb_path = '" + CONSTANTS.PS_THUMBNAILS_BASE + podcast.id + ".jpg', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
                     if(error)
                     result = error;
                     else
