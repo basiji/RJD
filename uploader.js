@@ -20,14 +20,15 @@ connection.connect(function(error){
 // Get list of not uploaded media (5 items)
 connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 20", function(error, result){
 
-    var podcast;
-    var options;
+   for (var i = 0; i < result.length; i ++) {
+       uploader(result[i], function(title, episode){
+           console.log(title + "(" + episode + ") -> updated.");
+       });
+   }
 
-    // Loop 
-    for (var i = 0; i < 20; i++) {
-
-        podcast = result[i];
-        options = { 
+    var uploader = function (podcast, callback){
+       
+        var options = { 
             method: 'POST',
             url: 'http://api.parsaspace.com/v1/remote/new',
             headers:{
@@ -49,12 +50,10 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
                     if(error)
                     console.log(error);
                     else
-                    console.log(podcast.title + "(" + podcast.episode + ") -> uploaded!");   
+                    callback(podcast.title, podcast.episode);
                 });
             }
 });
-
-
-    }
+}
 
 });
