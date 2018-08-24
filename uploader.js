@@ -34,7 +34,7 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
                 authorization: 'Bearer ' + CONSTANTS.PARSASPACE_TOKEN},
                 form:{
                     checkid: podcast.id,
-                    path: '/mp3/',
+                    path: '/podcasts/',
                     url: podcast.download_path,
                     domain: 'rc.parsaspace.com' ,
                     filename: podcast.id + ".mp3"
