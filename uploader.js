@@ -25,35 +25,34 @@ connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC
            console.log(title + "(" + episode + ") -> updated.");
        });
    }
+});
 
-    var uploader = function (podcast, callback){
+function uploader (podcast, callback){
        
-        var options = { 
-            method: 'POST',
-            url: 'http://api.parsaspace.com/v1/remote/new',
-            headers:{
-                authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
-                form:{
-                    checkid: podcast.id,
-                    path: '/podcasts/',
-                    url: podcast.download_path,
-                    domain: 'rc.parsaspace.com' ,
-                    filename: podcast.id + ".mp3"
-                } 
-            };
-    
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            else {
-                // Update podcasts download path and upload status
-                connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
-                    if(error)
-                    console.log(error);
-                    else
-                    callback(podcast.title, podcast.episode);
-                });
-            }
+    var options = { 
+        method: 'POST',
+        url: 'http://api.parsaspace.com/v1/remote/new',
+        headers:{
+            authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
+            form:{
+                checkid: podcast.id,
+                path: '/podcasts/',
+                url: podcast.download_path,
+                domain: 'rc.parsaspace.com' ,
+                filename: podcast.id + ".mp3"
+            } 
+        };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        else {
+            // Update podcasts download path and upload status
+            connection.query("UPDATE app_podcasts SET ps_download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                if(error)
+                console.log(error);
+                else
+                callback(podcast.title, podcast.episode);
+            });
+        }
 });
 }
-
-});
