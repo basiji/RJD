@@ -5,13 +5,23 @@ module.exports = function (req, res, connection){
     // 10 most liked -> popular
     // Receive list of shows
 
-    connection.query("SELECT * FROM app_podcasts WHERE featured = 1 OR popular = 1 ORDER BY RAND() LIMIT 20", function (error, result){
+    var popular;
+    var featured;
+
+
+    connection.query("SELECT * FROM app_podcasts WHERE featured = 1 ORDER BY RAND() LIMIT 10", function (error, result){
 
         if(error)
         console.log(error);
 
-        var popular = result.slice(0, 9);
-        var featured = result.slice(10, result.length - 1);
+            featured = result;
+
+        connection.query("SELECT * FROM app_podcasts WHERE popular = 1 ORDER BY RAND() LIMIT 10", function(error, result){
+
+            if(error)
+            console.log(error);
+
+            popular = result;
 
         //Receive list of shows
         connection.query("SELECT * FROM app_shows ORDER BY RAND()", function(error, result){
@@ -24,14 +34,15 @@ module.exports = function (req, res, connection){
                 featured:featured,
                 popular:popular,
                 shows:result,
-                buildnumber:2,
+                buildnumber:1,
                 update_url:'http://ps4club.ir/RC-4.apk',
             });
-
 
         });
         
     });
+        
+});
 
 
 }
