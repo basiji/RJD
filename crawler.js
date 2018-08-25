@@ -56,8 +56,10 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         var block, title, episode,link;
 
         // Check if new episode available
-        if(blocks.length === numShows)
+        if(blocks.length === numShows) {
             callback("No updates for " + show.title);
+            return;
+        }
             
         
         for (var i = 0; i < blocks.length - numShows - 1; i++) {
