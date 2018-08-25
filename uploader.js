@@ -49,10 +49,10 @@ function uploader (podcast, callback){
             authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
             form:{
                 checkid: podcast.id,
-                path: '/thumbnails/',
+                path: '/podcasts/',
                 url: podcast.thumb_path,
                 domain: 'rc.parsaspace.com' ,
-                filename: podcast.id + ".jpg"
+                filename: podcast.id + ".mp3"
             } 
         };
 
@@ -63,7 +63,7 @@ function uploader (podcast, callback){
                 var response = JSON.parse(body);
                 var result = '';
                 if(response.result === 'success')
-                connection.query("UPDATE app_podcasts SET thumb_path = '" + CONSTANTS.PS_THUMBNAILS_BASE + podcast.id + ".jpg' WHERE id = '" + podcast.id + "'", function (error){
+                connection.query("UPDATE app_podcasts SET download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
                     if(error)
                     result = error;
                     else
