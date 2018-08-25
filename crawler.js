@@ -32,6 +32,8 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         i++;                     
         if (i < result.length) {            
             myLoop();             
+        } else {
+            console.log('Finished');
         }                        
     }, 3000);
     }
