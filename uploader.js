@@ -20,6 +20,9 @@ connection.connect(function(error){
 // Get list of not uploaded media (5 items)
 connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 100", function(error, result){
 
+    if(result.length === 0)
+        return console.log('Nothing to upload');
+
     var i = 0;                     
     function myLoop () {           
     setTimeout(function () {    
