@@ -9,14 +9,14 @@ module.exports = function (req, res, connection){
     var featured;
 
 
-    connection.query("SELECT * FROM app_podcasts WHERE featured = 1 ORDER BY RAND() LIMIT 10", function (error, result){
+    connection.query("SELECT * FROM app_podcasts WHERE featured = 1 ORDER BY likes DESC LIMIT 10", function (error, result){
 
         if(error)
         console.log(error);
 
             featured = result;
 
-        connection.query("SELECT * FROM app_podcasts WHERE popular = 1 ORDER BY RAND() LIMIT 10", function(error, result){
+        connection.query("SELECT * FROM app_podcasts WHERE popular = 1 ORDER BY likes DESC LIMIT 10", function(error, result){
 
             if(error)
             console.log(error);
@@ -24,7 +24,7 @@ module.exports = function (req, res, connection){
             popular = result;
 
         //Receive list of shows
-        connection.query("SELECT * FROM app_shows ORDER BY RAND()", function(error, result){
+        connection.query("SELECT * FROM app_shows ORDER BY id DESC", function(error, result){
             
             if(error)
             console.log(error);
