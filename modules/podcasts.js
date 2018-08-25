@@ -9,9 +9,9 @@ module.exports = function(req, res, connection){
     // Receive list of podcasts
     var sql = '';
     if(showId === 'featured')
-        sql = "SELECT * FROM app_podcasts WHERE featured = 1 ORDER by RAND() DESC";
+        sql = "SELECT * FROM app_podcasts WHERE featured = 1 ORDER by likes DESC";
     else if(showId === 'popular')
-        sql = "SELECT * FROM app_podcasts WHERE popular = 1 ORDER by RAND() DESC";
+        sql = "SELECT * FROM app_podcasts WHERE popular = 1 ORDER by likes DESC";
     else 
         sql = "SELECT * FROM app_podcasts WHERE showid = '" + showId + "' ORDER BY episode DESC ";
     
