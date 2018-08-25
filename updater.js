@@ -22,7 +22,7 @@ connection.connect(function(error){
 });
 
 // Get records
-connection.query("SELECT * FROM app_podcasts WHERE download_path = ''", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE rj_download_path = ''", function(error, result){
 
     if(result.length === 0)
         return console.log('Nothing to update.');
@@ -67,8 +67,8 @@ var updateRecord = function(id, link, connecttion){
     likes:clean(likes),
     dislikes:clean(dislikes),
     plays:clean(plays),
-    thumb_path:thumb_path,
-    download_path:download_path
+    rj_thumb_path:thumb_path,
+    rj_download_path:download_path
     }, function(error){
     
         if(error)

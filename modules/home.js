@@ -7,14 +7,14 @@ module.exports = function (req, res, connection){
 
     var popular;
     var featured;
-
+    
 
     connection.query("SELECT * FROM app_podcasts WHERE featured = 1 ORDER BY likes DESC LIMIT 10", function (error, result){
 
         if(error)
         console.log(error);
 
-            featured = result;
+        featured = result;
 
         connection.query("SELECT * FROM app_podcasts WHERE popular = 1 ORDER BY likes DESC LIMIT 10", function(error, result){
 
