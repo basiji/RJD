@@ -36,10 +36,10 @@ connection.query("SELECT * FROM app_podcasts WHERE size = 0", function(error, re
 var updateMediaSize = function(media){
 
     // Check CDN 1
-    remote(CONSTANTS.RJ_CDN_URL_1 + media.download_path, function(error, size){
+    remote(CONSTANTS.RJ_CDN_URL_1 + media.rj_download_path, function(error, size){
 
         if(error)
-            remote(CONSTANTS.RJ_CDN_URL_2 + media.download_path, function(error, size){
+            remote(CONSTANTS.RJ_CDN_URL_2 + media.rj_download_path, function(error, size){
                 
                 if(error) 
                     size = 0;
