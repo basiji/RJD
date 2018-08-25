@@ -1,21 +1,24 @@
-var fs = require('fs');
-var request = require('request');
-var parser = require('fast-html-parser');
-//var stream  = request('https://www.radiojavan.com/podcasts/podcast/Dynatomix-30').pipe(fs.createWriteStream('test.html'));
+var mysql = require('mysql');
+var CONSTANTS = require(__dirname + '/modules/constants.js');
 
-  /*  stream.on('finish',function(){
-    var document = fs.readFileSync('test.html');;
-    var root = parser.parse(document.toString(), {
-        script:true
-    });*/
+var connection = mysql.createConnection(CONSTANTS.MySQL);
+connection.connect(function(error){
+    if(error)
+    console.log(error);
+});
 
-    var document = fs.readFileSync('test.html');;
-    var root = parser.parse(document.toString(), {
-        script:true
-    });
+connection.query("SELECT * FROM app_podcasts ORDER BY id DESC", function(error, result){
 
-    // Thumbnail, Likes, Dislikes, Plays
-    var block = root.querySelectorAll('div.block_container');
-    console.log(block[0].childNodes[1].rawAttrs.split("=")[2].split('"')[1])
+    for (var i = 0; i < result.length; i++) {
+        // Update download_path
+        connection.query("UPDATE app_podcasts SET download_path = '" + CONSTANTS.PS_PODCASTS_BASE + result[i].id + '.mp3', function(error){
 
-    //});
+            if(error)
+                console.log(error);
+            else 
+                console.log(result[i].title + '(' + result[i].episode + ') -> updated.');
+
+        });
+    }
+
+});
