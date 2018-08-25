@@ -35,8 +35,13 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         }                        
     }, 3000);
     }
+
+    myLoop();
+
     });
+
     
+
     function updater(show, callback) {
 
         var show = result[0];
