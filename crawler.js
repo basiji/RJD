@@ -18,62 +18,62 @@ connection.connect(function(error){
 });
 
 /* Get updating podcasts */
-connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIMIT 1", function(error, result){
+connection.query("SELECT * FROM app_shows", function(error, result){
 
     if(error)
     return console.log(error);
-
-    if(result.length === 0){
-        // Check all not updated
-        connection.query("UPDATE app_shows SET updated = 0", function(error){
-            if(error)
-            console.log(error);
-            return console.log('All shows updated -> reset done');
-        })
-    } else {
-        // Check updated
-        connection.query("UPDATE app_shows SET updated = 1 WHERE id = '" + result[0].id + "'", function(error){
-            if(error)
-            console.log(error);
-        })
+    
+    var i = 0;                     
+    function myLoop () {           
+    setTimeout(function () {    
+        updater(result[i], function(message){
+            console.log(message);
+        });
+        i++;                     
+        if (i < result.length) {            
+            myLoop();             
+        }                        
+    }, 3000);
     }
+    });
+    
+    function updater(show, callback) {
 
-    var show = result[0];
-    var show_url = show.url;
-    var showId = show.id;
-    var numShows = show.numshows;
+        var show = result[0];
+        var show_url = show.url;
+        var showId = show.id;
+        var numShows = show.numshows;
     
-    var stream  = request(show_url).pipe(fs.createWriteStream('temp.html'));
-    stream.on('finish',function(){
-    var document = fs.readFileSync('temp.html');
-    var root = parser.parse(document.toString());
-    var blocks = root.querySelectorAll("a.block_container");
-    var block, title, episode,link;
+        var stream  = request(show_url).pipe(fs.createWriteStream('temp.html'));
+        stream.on('finish',function(){
+        var document = fs.readFileSync('temp.html');
+        var root = parser.parse(document.toString());
+        var blocks = root.querySelectorAll("a.block_container");
+        var block, title, episode,link;
 
-    // Check if new episode available
-    if(blocks.length === numShows)
-        return console.log('No updates available for '  + show.title);
-    
-    for (var i = 0; i < blocks.length - numShows - 1; i++) {
-    
-    block = blocks[i];
-    // Get required information
-    title =  block.childNodes[3].childNodes[1].childNodes[0].rawText;
-    episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
-    link = block.rawAttrs.split('"')[1];
-    
-    // Insert into DB
-    connection.query("INSERT INTO app_podcasts SET ?", {
-        title:title,
-        episode:episode,
-        link:link,
-        showid:showId
-        }, function(error){
-        if(error)
-            console.log(error);
-        else
-            console.log('New podcast inserted ->' + title + '(' + episode + ')');
-    }); 
+        // Check if new episode available
+        if(blocks.length === numShows)
+            return callback("No updates for " + show.title);
+            
+        
+        for (var i = 0; i < blocks.length - numShows - 1; i++) {
+        
+        block = blocks[i];
+        // Get required information
+        title =  block.childNodes[3].childNodes[1].childNodes[0].rawText;
+        episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
+        link = block.rawAttrs.split('"')[1];
+        
+        // Insert into DB
+        connection.query("INSERT INTO app_podcasts SET ?", {
+            title:title,
+            episode:episode,
+            link:link,
+            showid:showId
+            }, function(error){
+            if(error)
+                console.log(error);
+        }); 
 
     }   
 
@@ -82,10 +82,10 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
             if(error)
                 console.log(error);
             else
-                console.log(show.title + '-> updated.');
+                callback(show.title +' Updated');
         });
 
     }); // stream on finish
-    }); // receive updating show
+}
 
 
