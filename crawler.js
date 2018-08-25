@@ -23,9 +23,19 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
     if(error)
     return console.log(error);
 
-    var show_url = result[0].url;
-    var showId = result[0].id;
-    var numShows = result[0].numshows;
+    if(result.length === 0){
+        // Check all not updated
+        connection.query("UPDATE app_shows SET updated = 0", function(error){
+            if(error)
+            console.log(error);
+            return console.log('All shows updated -> reset done');
+        })
+    }
+
+    var show = result[0];
+    var show_url = show.url;
+    var showId = show.id;
+    var numShows = show.numshows;
     
     var stream  = request(show_url).pipe(fs.createWriteStream('temp.html'));
     stream.on('finish',function(){
@@ -36,7 +46,7 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
 
     // Check if new episode available
     if(blocks.length === numShows)
-        return console.log('No updates available');
+        return console.log('No updates available for '  + show.title);
     
     for (var i = 0; i < blocks.length - numShows - 1; i++) {
     
@@ -54,13 +64,19 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
         showid:showId
         }, function(error){
         if(error)
-        console.log(error);}); 
+            console.log(error);
+        else
+            console.log('New podcast inserted ->' + title + '(' + episode + ')');
+    }); 
+
     }   
 
         // Update shownum
         connection.query("UPDATE app_shows SET updated = 1, numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
             if(error)
-            console.log(error);
+                console.log(error);
+            else
+                console.log(show.title + '-> updated.');
         });
 
     }); // stream on finish

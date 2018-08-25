@@ -18,7 +18,7 @@ connection.connect(function(error){
 });
 
 // Get list of not uploaded media (5 items)
-connection.query("SELECT * FROM app_podcasts WHERE ps_thumb_path = '' ORDER BY id DESC LIMIT 200", function(error, result){
+connection.query("SELECT * FROM app_podcasts WHERE uploaded = 0 ORDER BY id DESC LIMIT 100", function(error, result){
 
     var i = 0;                     
     function myLoop () {           

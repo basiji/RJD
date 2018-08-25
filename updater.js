@@ -69,7 +69,9 @@ var updateRecord = function(id, link, connecttion){
     }, function(error){
     
         if(error)
-        console.log(error);
+            console.log(error);
+        else
+            console.log('Show id ' + id + ' updated.');
         
         // Remove temp file
         fs.unlink(__dirname + '/tmp/' + id + ".html", function(){});

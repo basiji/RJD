@@ -70,7 +70,9 @@ var updateRecord = function(cdn, media, size){
 
     connection.query("UPDATE app_podcasts SET size = " + size + ", download_path = '" + download_path + "' WHERE id = '" + media.id + "'", function(error){
         if(error)
-        console.log(error);
+            console.log(error);
+        else
+            console.log('Podcast ' + media.title + ' (' + media.episode + ') updated.');
     });
 }
 
