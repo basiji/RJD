@@ -64,7 +64,7 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         }
             
         
-        for (var i = 0; i < blocks.length - numShows - 1; i++) {
+        for (var i = 0; i < blocks.length - numShows; i++) {
         
         block = blocks[i];
         // Get required information
