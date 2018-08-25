@@ -44,7 +44,6 @@ connection.query("SELECT * FROM app_shows", function(error, result){
 
     function updater(show, callback) {
 
-        var show = result[0];
         var show_url = show.url;
         var showId = show.id;
         var numShows = show.numshows;
