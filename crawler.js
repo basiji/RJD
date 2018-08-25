@@ -30,6 +30,12 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
             console.log(error);
             return console.log('All shows updated -> reset done');
         })
+    } else {
+        // Check updated
+        connection.query("UPDATE app_shows SET updated = 1 WHERE id = '" + result[0].id + "'", function(error){
+            if(error)
+            console.log(error);
+        })
     }
 
     var show = result[0];
@@ -71,8 +77,8 @@ connection.query("SELECT * FROM app_shows WHERE updated = 0 ORDER BY id DESC LIM
 
     }   
 
-        // Update shownum
-        connection.query("UPDATE app_shows SET updated = 1, numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
+        // Update numshows
+        connection.query("UPDATE app_shows SET numshows = " + blocks.length + " WHERE id = '" + showId + "'", function(error){
             if(error)
                 console.log(error);
             else
