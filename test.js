@@ -12,7 +12,7 @@ connection.query("SELECT * FROM app_podcasts ORDER BY id DESC", function(error, 
     if(error)
     return console.log(error);
 
-    for (var i = 0; i < podcasts.length; i++) {
+    for (var i = 0; i < result.length; i++) {
         
         updater(result[i], function(message){
             console.log(message);
