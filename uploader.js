@@ -63,7 +63,7 @@ function uploader (podcast, callback){
                 var response = JSON.parse(body);
                 var result = '';
                 if(response.result === 'success')
-                connection.query("UPDATE app_podcasts SET thumb_path = '" + CONSTANTS.PS_THUMBNAILS_BASE + podcast.id + ".jpg', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                connection.query("UPDATE app_podcasts SET thumb_path = '" + CONSTANTS.PS_THUMBNAILS_BASE + podcast.id + ".jpg' WHERE id = '" + podcast.id + "'", function (error){
                     if(error)
                     result = error;
                     else
