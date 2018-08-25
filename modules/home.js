@@ -24,7 +24,7 @@ module.exports = function (req, res, connection){
             popular = result;
 
         //Receive list of shows
-        connection.query("SELECT * FROM app_shows ORDER BY id DESC", function(error, result){
+        connection.query("SELECT * FROM app_shows ORDER BY title ASC", function(error, result){
             
             if(error)
             console.log(error);
