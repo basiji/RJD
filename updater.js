@@ -24,6 +24,9 @@ connection.connect(function(error){
 // Get records
 connection.query("SELECT * FROM app_podcasts WHERE download_path = ''", function(error, result){
 
+    if(result.length === 0)
+        return console.log('Nothing to update.');
+
     // Loop through result
     for (var i = 0; i < result.length; i++){
         updateRecord(result[i].id, result[i].link, connection);
