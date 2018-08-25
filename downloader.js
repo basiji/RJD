@@ -59,16 +59,16 @@ var updateRecord = function(cdn, media, size){
     // Download Link
     var download_path;
     if(cdn === 1)
-        download_path = CONSTANTS.RJ_CDN_URL_1 + media.download_path;
+        download_path = CONSTANTS.RJ_CDN_URL_1 + media.rj_download_path;
     else 
-        download_path = CONSTANTS.RJ_CDN_URL_2 + media.download_path;
+        download_path = CONSTANTS.RJ_CDN_URL_2 + media.rj_download_path;
 
     // Round size to MB
     size = size / 1000000;
 
     // Update record
 
-    connection.query("UPDATE app_podcasts SET size = " + size + ", download_path = '" + download_path + "' WHERE id = '" + media.id + "'", function(error){
+    connection.query("UPDATE app_podcasts SET size = " + size + ", rj_download_path = '" + download_path + "' WHERE id = '" + media.id + "'", function(error){
         if(error)
             console.log(error);
         else
