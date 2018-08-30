@@ -42,7 +42,7 @@ myLoop();
 
 function uploader (podcast, callback){
        
-    var options = { 
+    var options_mp3 = { 
         method: 'POST',
         url: 'http://api.parsaspace.com/v1/remote/new',
         headers:{
@@ -56,25 +56,62 @@ function uploader (podcast, callback){
             } 
         };
 
-    request(options, function (error, response, body) {
+    var options_thumbnail = { 
+        method: 'POST',
+        url: 'http://api.parsaspace.com/v1/remote/new',
+        headers:{
+            authorization: 'Bearer ' + CONSTANTS.PS_TOKEN},
+            form:{
+                checkid: podcast.id,
+                path: '/thumbnails/',
+                url: podcast.rj_thumb_path,
+                domain: 'rc.parsaspace.com' ,
+                filename: podcast.id + ".jpg"
+            } 
+        };
+    
+
+    request(options_mp3, function (error, response, body) {
         if (error) throw new Error(error);
         else {
             try {
                 var response = JSON.parse(body);
                 var result = '';
                 if(response.result === 'success')
-                connection.query("UPDATE app_podcasts SET download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                connection.query("UPDATE app_podcasts SET download_path = '" + CONSTANTS.PS_PODCASTS_BASE + podcast.id + ".mp3' WHERE id = '" + podcast.id + "'", function (error){
                     if(error)
                     result = error;
                     else
                     result = 'success';
-                    callback(podcast.title + "(" + podcast.episode + ")", result);
                     
+                    // Update thumbnail
+                    request(options_thumbnail, function (error, response, body) {
+                        if (error) throw new Error(error);
+                        else {
+                            try {
+                                var response = JSON.parse(body);
+                                var result = '';
+                                if(response.result === 'success')
+                                connection.query("UPDATE app_podcasts SET thumb_path = '" + CONSTANTS.PS_THUMBNAILS_BASE + podcast.id + ".jpg', uploaded = 1 WHERE id = '" + podcast.id + "'", function (error){
+                                    if(error)
+                                    result = error;
+                                    else
+                                    result = 'success';
+                                    callback(podcast.title + "(" + podcast.episode + ")", result);
+                                });    
+                            } catch (error) {
+                                return;
+                            }
+                            
+                        }
+                    });
                 });    
             } catch (error) {
                 return;
             }
             
         }
-});
+    });
+
+
 }
