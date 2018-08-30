@@ -20,7 +20,7 @@ connection.connect(function(error){
 });
 
 // Get records
-connection.query("SELECT * FROM app_podcasts", function(error, result){
+connection.query("SELECT * FROM app_podcasts ORDER BY id DESC", function(error, result){
 
 var i = 0;                     
     function myLoop () {           
