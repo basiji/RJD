@@ -50,7 +50,7 @@ function uploader (podcast, callback){
             form:{
                 checkid: podcast.id,
                 path: '/podcasts/',
-                url: podcast.download_path,
+                url: podcast.rj_download_path,
                 domain: 'rc.parsaspace.com' ,
                 filename: podcast.id + ".mp3"
             } 
