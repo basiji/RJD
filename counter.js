@@ -22,13 +22,6 @@ connection.connect(function(error){
 // Get records
 connection.query("SELECT * FROM app_podcasts", function(error, result){
 
-    // Loop through result
-    for (var i = 0; i < result.length; i++){
-        updateRecord(result[i].id, result[i].link, connection);
-    }
-
-});
-
 var i = 0;                     
     function myLoop () {           
     setTimeout(function () {    
@@ -42,6 +35,7 @@ var i = 0;
 
 myLoop();       
 
+});
 function counter(podcast){
 
     var stream  = request(CONSTANTS.RJ_BASE_URL + podcast.link).pipe(fs.createWriteStream(__dirname + '/tmp/' + podcast.id + '.html'));
