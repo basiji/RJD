@@ -26,7 +26,7 @@ app.listen(CONSTANTS.PORT, function(){
 });
 
 // Serve static resources
-app.use(express.static(__dirname + '/html2'));
+app.use(express.static(__dirname + '/html'));
 
 // Routes :: Get Home data
 app.get('/home',function(req, res){
@@ -58,7 +58,7 @@ app.get('/gateway', function(req, res){
     // Set cookie
     res.cookie('userid', req.query.userid);
     res.cookie('plan', req.query.plan);
-    res.sendFile(__dirname + '/html2/index.html');
+    res.sendFile(__dirname + '/html/index.html');
 
 });
 
