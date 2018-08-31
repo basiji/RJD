@@ -237,31 +237,31 @@
 						<div class="pay-layout">
 							<div class="pay-layout-row">
 								<div class="pay-layout-cell pay-layout-cell-input">
-									<input type="text" name="Payment.Part1" class="form-control ltr number paymentField" maxlength="4" tabindex="1" autocomplete="off" />
+									<input type="number" name="Payment.Part1" class="form-control ltr number paymentField" maxlength="4" tabindex="1" autocomplete="off" />
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-divider">
 									<span></span>
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-input">
-									<input type="text" name="Payment.Part2" class="form-control ltr number paymentField" maxlength="4" tabindex="2" autocomplete="off" />
+									<input type="number" name="Payment.Part2" class="form-control ltr number paymentField" maxlength="4" tabindex="2" autocomplete="off" />
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-divider">
 									<span></span>
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-input">
-									<input type="text" name="Payment.Part3" class="form-control ltr number paymentField" maxlength="4" tabindex="3" autocomplete="off" />
+									<input type="number" name="Payment.Part3" class="form-control ltr number paymentField" maxlength="4" tabindex="3" autocomplete="off" />
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-divider">
 									<span></span>
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-input">
-									<input type="text" name="Payment.Part4" class="form-control ltr number paymentField" maxlength="4" tabindex="4" autocomplete="off" />
+									<input type="number" name="Payment.Part4" class="form-control ltr number paymentField" maxlength="4" tabindex="4" autocomplete="off" />
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-divider">
 									<span></span>
 								</div>
 								<div class="pay-layout-cell pay-layout-cell-input">
-									<input type="text" name="Payment.Part5" class="form-control ltr number paymentField" maxlength="4" tabindex="5" autocomplete="off" disabled />
+									<input type="number" name="Payment.Part5" class="form-control ltr number paymentField" maxlength="4" tabindex="5" autocomplete="off" disabled />
 								</div>
 							</div>
 						</div>
@@ -283,7 +283,7 @@
 						رمز دوم کارت (رمز اينترنتی)
 					</label>
 
-					<input type="password" name="Payment.Part6" class="form-control ltr number paymentField pull-left keypad" maxlength="12" tabindex="6" autocomplete="off" pattern="\d*" />
+					<input type="password" pattern="[0-9]*" inputmode="numeric" name="Payment.Part6" class="form-control ltr number paymentField pull-left keypad" maxlength="12" tabindex="6" autocomplete="off" pattern="\d*" />
 
 					<p class="help-block">
 						لطفاً از صحت رمز عبور خود مطمئن شوید
@@ -299,7 +299,7 @@
 						کد سه یا چهار رقمی ( cvv2 )
 					</label>
 
-					<input type="password" name="Payment.Part7" class="form-control ltr number paymentField pull-left keypad" maxlength="4" tabindex="7" autocomplete="off" />
+					<input type="password" pattern="[0-9]*" inputmode="numeric" name="Payment.Part7" class="form-control ltr number paymentField pull-left keypad" maxlength="4" tabindex="7" autocomplete="off" />
 				</div>
 			</div>
 		</div>
@@ -315,13 +315,13 @@
 						<div class="date-layout">
 							<div class="date-layout-row">
 								<div class="date-layout-cell">
-									<input type="text" name="Payment.Part9" class="form-control ltr number paymentField" maxlength="2" tabindex="9" autocomplete="off" />
+									<input type="number" name="Payment.Part9" class="form-control ltr number paymentField" maxlength="2" tabindex="9" autocomplete="off" />
 								</div>
 								<div class="date-layout-cell date-layout-cell-txt">
 									<span style="margin-left: 5px;margin-right: 5px;">سال</span>
 								</div>
 								<div class="date-layout-cell">
-									<input type="text" name="Payment.Part8" class="form-control ltr number paymentField" maxlength="2" tabindex="8" autocomplete="off" />
+									<input type="number" name="Payment.Part8" class="form-control ltr number paymentField" maxlength="2" tabindex="8" autocomplete="off" />
 								</div>
 								<div class="date-layout-cell date-layout-cell-txt">
 									<span style="margin-left: 5px">ماه</span>
