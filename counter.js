@@ -29,6 +29,9 @@ var i = 0;
         i++;                     
         if (i < result.length) {            
             myLoop();             
+        } else {
+            console.log('Finished');
+            process.exit();
         }                        
     }, 3000)
 }

