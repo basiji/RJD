@@ -374,7 +374,7 @@
 				</button>
 			</div>
 			<div class="col-xs-6">
-				<button type="reset" class="btn btn-default btn-block  pull-left btn-c" tabindex="12" style=" padding: 3px 12px;">
+				<button type="reset" id="enserafButton" class="btn btn-default btn-block  pull-left btn-c" tabindex="12" style=" padding: 3px 12px;">
 					انصراف
 				</button>
             </div>
@@ -683,6 +683,12 @@
         });
 
         });
+
+		$('button#enserafButton').click(function (e) {
+			window.location.href = 'payamchin://refid/failed';
+		});
+
+
     
     });
 
