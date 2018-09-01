@@ -53,13 +53,13 @@ app.get('/submit', function(req, res){
 app.get('/gateway', function(req, res){
 
     // Recevie userID -> set the cookie
-    if(!req.query.userid)
+    //if(!req.query.userid)
     return res.sendStatus(404);
 
-    // Set cookie
+    /* Set cookie
     res.cookie('userid', req.query.userid);
     res.cookie('plan', req.query.plan);
-    res.sendFile(__dirname + '/html2/index.html');
+    res.sendFile(__dirname + '/html2/index.html');*/
 
 
 });
