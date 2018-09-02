@@ -33,7 +33,7 @@ var i = 0;
             console.log('Finished');
             process.exit();
         }                        
-    }, 3000)
+    }, 1000)
 }
 
 myLoop();       
