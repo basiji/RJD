@@ -45,7 +45,7 @@ module.exports = function (req, res, connection){
                 
                 for (var i = 0; i < result.length; i++) {
 
-                    slides[i].name = 'farbod';
+                    slides[i].name = {name:'farbod', lname  :'hadi'};
                     console.log(slides[i]);
 
                 }
