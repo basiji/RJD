@@ -43,11 +43,15 @@ module.exports = function (req, res, connection){
 
                 var slides = result;
                 var ids = [];
+                var index = [];
                 
                 // Get list of podcast slides (ids)
                 for (var i = 0; i < slides.length; i++) 
-                    if(slides[i].type === 'podcast') 
+                    if(slides[i].type === 'podcast')  {
                         ids.push(slides[i].id);
+                        index.push(i);
+                    }
+
 
                 // Get related podcasts
                 connection.query("SELECT " + queries +  " FROM app_podcasts WHERE id IN (" + ids.join(',') + ")", function(error, result){
@@ -55,8 +59,8 @@ module.exports = function (req, res, connection){
                     if(error)
                         console.log(error);
                     else
-                        //for (var i = 0; i < result.length; i++) 
-                        //    slides[ids[i]].podcast = result[i];
+                        for (var i = 0; i < result.length; i++) 
+                            slides[index[i]].podcast = result[i];
                         console.log(result);
                         console.log(ids);
 
