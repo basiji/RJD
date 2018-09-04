@@ -47,13 +47,16 @@ module.exports = function (req, res, connection){
                 // Get list of podcast slides (ids)
                 for (var i = 0; i < slides.length; i++) 
                     if(slides[i].type === 'podcast') 
-                        ids[ids.length] = slides[i].id;
+                        ids.push(slides[i].id);
 
                 connection.query("SELECT * FROM app_podcasts WHERE id IN ('" + ids.join(',') + "'", function(error, result){
 
-                    for (var i = 0; i < result.length; i++) {
-                        slides[ids[i]].podcast = result[i];
-                    }
+                    if(error)
+                        console.log(error);
+                    else 
+                        for (var i = 0; i < result.length; i++) 
+                            slides[ids[i]].podcast = result[i];
+                        
 
                 });
 
