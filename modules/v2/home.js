@@ -49,7 +49,7 @@ module.exports = function (req, res, connection){
                     if(slides[i].type === 'podcast') 
                         ids.push(slides[i].id);
 
-                connection.query("SELECT * FROM app_podcasts WHERE id IN ('" + ids.join(',') + "'", function(error, result){
+                connection.query("SELECT * FROM app_podcasts WHERE id IN ('" + ids.join(',') + "')", function(error, result){
 
                     if(error)
                         console.log(error);
