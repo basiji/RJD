@@ -8,6 +8,7 @@ module.exports = function (req, res, connection){
     var popular;
     var featured;
     var shows;
+    var slides;
     var queries = 'id, title, episode, thumb_path, download_path, likes, dislikes, plays, size';
     
     // Featured
@@ -41,17 +42,14 @@ module.exports = function (req, res, connection){
                 if(error)
                     console.log(error);
 
-                var slides = result;
+                slides = result;
                 
                 // Fill the podcast if essential
                 for (var i = 0; i < slides.length; i++) {
                     
-                    var podcast;
-
                     if(slides[i].type === 'podcast') {
                         connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
-                            podcast = result[0];
-                            slides[i].podcast = podcast;
+                            slides[i].podcast = result[0];
                         });
                     }
 
