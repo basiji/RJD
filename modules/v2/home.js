@@ -49,21 +49,15 @@ module.exports = function (req, res, connection){
                     if(slides[i].type === 'podcast') 
                         ids.push(slides[i].id);
 
+                // Get related podcasts
                 connection.query("SELECT * FROM app_podcasts WHERE id IN ('" + ids.join(',') + "')", function(error, result){
 
                     if(error)
                         console.log(error);
-                    else 
+                    else
                         for (var i = 0; i < result.length; i++) 
                             slides[ids[i]].podcast = result[i];
                         
-
-                });
-
-                console.log(slides);
-
-
-                
                 // Response JSON
                 return res.json({
                     featured:featured,
@@ -73,6 +67,12 @@ module.exports = function (req, res, connection){
                     buildnumber:2,
                     update_url:'http://ps4club.ir/RC-4.apk',
                 });
+
+
+                });
+
+                
+                
 
 
             });
