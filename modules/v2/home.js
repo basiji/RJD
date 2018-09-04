@@ -61,9 +61,7 @@ module.exports = function (req, res, connection){
                     else
                         for (var i = 0; i < result.length; i++) 
                             slides[index[i]].podcast = result[i];
-                        console.log(result);
-                        console.log(ids);
-
+                    
                 // Response JSON
                 return res.json({
                     featured:featured,
