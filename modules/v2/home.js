@@ -42,16 +42,11 @@ module.exports = function (req, res, connection){
                     console.log(error);
 
                 var slides = result;
-                console.log(slides);
-
+                
                 for (var i = 0; i < result.length; i++) {
 
-                    if(slides[i].type === 'podcast') {
-                        connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
-                            //if(!error)
-                               // slides[i].podcast = result[0];
-                        });
-                    }
+                    
+                    console.log(slides[i]);
 
                 }
                 
