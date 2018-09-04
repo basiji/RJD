@@ -43,16 +43,14 @@ module.exports = function (req, res, connection){
 
                 var slides = result;
                 
-                for (var i = 0; i < result.length; i++) {
-
+                // Fill the podcast if essential
+                for (var i = 0; i < result.length; i ++) {
                     if(slides[i].type === 'podcast') {
-                        connection.query("SELECT " + queries + " FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result, slides){
-                            //slides[i].podcast = result[0];
+                        fillMe(slides[i], connection, function(podcast){
+                            slides[i].podcast = podcast;
                             console.log(slides[i]);
-                        })
+                        });
                     }
-                    //console.log(slides[i]);
-
                 }
                 
                 // Response JSON
@@ -76,6 +74,13 @@ module.exports = function (req, res, connection){
     });
         
 });
+
+function fillMe(slide, connection, callback){
+    connection.query("SELECT * FROM app_podcasts WHERE id = '" + slide.id + "'", function(error, result){
+        if(!error)
+            callback(result[0]);
+    });
+}
 
 
 }
