@@ -45,12 +45,10 @@ module.exports = function (req, res, connection){
                 
                 // Fill the podcast if essential
                 for (var i = 0; i < result.length; i ++) {
-                    if(slides[i].type === 'podcast') {
-                        fillMe(slides[i], connection, function(podcast){
-                            slides[i].podcast = podcast;
-                            console.log(slides[i]);
-                        });
-                    }
+                    connection.query("SELECT * FROM app_podcasts WHERE id = '" + result[i].length + "'", function(error, podcasts){
+                        result[i].podcast = podcasts[0];
+                        console.log(result[i]);
+                    });
                 }
                 
                 // Response JSON
@@ -74,13 +72,6 @@ module.exports = function (req, res, connection){
     });
         
 });
-
-function fillMe(slide, connection, callback){
-    connection.query("SELECT * FROM app_podcasts WHERE id = '" + slide.id + "'", function(error, result){
-        if(!error)
-            callback(result[0]);
-    });
-}
 
 
 }
