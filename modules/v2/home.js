@@ -51,12 +51,9 @@ module.exports = function (req, res, connection){
                     if(slides[i].type === 'podcast') {
                         connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
                             podcast = result[0];
-                            console.log(podcast);
+                            slides[i].podcast = podcast;
                         });
-                    
-                        slides[i].podcast = podcast;
-                    
-                }
+                    }
 
                     console.log(slides[i]);
 
