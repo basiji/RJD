@@ -9,7 +9,7 @@ Information gathered:
 
 var mysql = require('mysql');
 var remote = require('remote-file-size');
-var CONSTANTS = require(__dirname + '/modules/constants.js');
+var CONSTANTS = require('../modules/constants.js');
 var connection = mysql.createConnection(CONSTANTS.MySQL);
 
 // Establish MySQL connection

@@ -8,7 +8,7 @@ var fs = require('fs');
 var parser = require('fast-html-parser');
 var request = require('request');
 var mysql = require('mysql');
-var CONSTANTS = require(__dirname + '/modules/constants.js');
+var CONSTANTS = require('../modules/constants');
 var connection = mysql.createConnection(CONSTANTS.MySQL);
 
 // Establish MySQL connection

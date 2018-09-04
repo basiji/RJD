@@ -11,7 +11,7 @@ var request = require('request');
 var parser = require('fast-html-parser');
 var remote = require('remote-file-size');
 var mysql = require('mysql');
-var CONSTANTS = require(__dirname + '/modules/constants.js');
+var CONSTANTS = require('../modules/constants');
 
 var connection = mysql.createConnection(CONSTANTS.MySQL);
 connection.connect(function(error){
@@ -33,7 +33,7 @@ var i = 0;
             console.log('Finished');
             process.exit();
         }                        
-    }, 1000)
+    }, 3000)
 }
 
 myLoop();       

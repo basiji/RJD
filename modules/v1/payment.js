@@ -1,5 +1,5 @@
 var CryptoJS = require('crypto-js');
-var constants = require('./constants');
+var constants = require('../constants');
 var SECRET_KEY = constants.SECRET_KEY;
 
 module.exports = function(req, res, connection){

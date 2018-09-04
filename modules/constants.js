@@ -1,5 +1,5 @@
 module.exports = {
-    PORT:3000,
+    PORT:2000,
     MySQL:{
         host:'localhost',
         user:'admin',

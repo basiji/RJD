@@ -8,7 +8,7 @@ Function :
 
 var request = require('request');
 var mysql = require('mysql');
-var CONSTANTS = require(__dirname + '/modules/constants.js');
+var CONSTANTS = require('../modules/constants.js');
 
 
 var connection = mysql.createConnection(CONSTANTS.MySQL);
