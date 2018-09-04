@@ -50,7 +50,7 @@ module.exports = function (req, res, connection){
                         ids.push(slides[i].id);
 
                 // Get related podcasts
-                connection.query("SELECT " + queries +  " FROM app_podcasts WHERE id IN ('" + ids.join(',') + "')", function(error, result){
+                connection.query("SELECT " + queries +  " FROM app_podcasts WHERE id IN (" + ids.join(',') + ")", function(error, result){
 
                     if(error)
                         console.log(error);
