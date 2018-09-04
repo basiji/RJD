@@ -37,7 +37,7 @@ module.exports = function (req, res, connection){
 
 
             // Sliders
-            connection.queries("SELECT * FROM app_sliders ORDER BY position ASC", function(error, result){
+            connection.query("SELECT * FROM app_sliders ORDER BY position ASC", function(error, result){
                 
                 if(error)
                     console.log(error);
