@@ -46,7 +46,7 @@ module.exports = function (req, res, connection){
                 // Fill the podcast if essential
                 for (var i = 0; i < slides.length; i ++) {
                     var podcast;
-                    connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].id + "'", function(error, result){
+                    connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
                         podcast = result[0];
                     });
 
