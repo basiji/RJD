@@ -20,7 +20,7 @@ module.exports = function(req, res, connection){
         break;
 
         case 'likes':
-        sql = "SELECT " + queries + " FROM app_podcasts WHERE id IN ('" + req.query.key + "') ORDER BY title DESC";
+        sql = "SELECT " + queries + " FROM app_podcasts WHERE id IN (" + req.query.key + ") ORDER BY title DESC";
         break;
 
         case 'show':
