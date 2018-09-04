@@ -45,8 +45,12 @@ module.exports = function (req, res, connection){
                 
                 for (var i = 0; i < result.length; i++) {
 
-                    slides[i].name = {name:'farbod', lname  :'hadi'};
-                    console.log(slides[i]);
+                    if(slides[i].destination === 'podcast') {
+                        connection.query("SELECT " + queries + " FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
+                            console.log(result);
+                        })
+                    }
+                    //console.log(slides[i]);
 
                 }
                 
