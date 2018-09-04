@@ -8,7 +8,6 @@ module.exports = function (req, res, connection){
     var popular;
     var featured;
     var shows;
-    var slides;
     var queries = 'id, title, episode, thumb_path, download_path, likes, dislikes, plays, size';
     
     // Featured
@@ -42,14 +41,15 @@ module.exports = function (req, res, connection){
                 if(error)
                     console.log(error);
 
-                slides = result;
+                var slides = result;
+                console.log(slides);
 
                 for (var i = 0; i < result.length; i++) {
 
                     if(slides[i].type === 'podcast') {
                         connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
-                            if(!error)
-                                slides[i].podcast = result[0];
+                            //if(!error)
+                               // slides[i].podcast = result[0];
                         });
                     }
 
