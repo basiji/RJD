@@ -44,11 +44,15 @@ module.exports = function (req, res, connection){
                 var slides = result;
                 
                 // Fill the podcast if essential
-                for (var i = 0; i < result.length; i ++) {
-                    connection.query("SELECT * FROM app_podcasts WHERE id = '" + result[i].length + "'", function(error, podcasts){
-                        result[i].podcast = podcasts[0];
-                        console.log(result[i]);
+                for (var i = 0; i < slides.length; i ++) {
+                    var podcast;
+                    connection.query("SELECT * FROM app_podcasts WHERE id = '" + result[i].length + "'", function(error, result){
+                        podcast = result[0];
                     });
+
+                    slides[i].podcast = podcast;
+                    console.log(slides[i]);
+
                 }
                 
                 // Response JSON
