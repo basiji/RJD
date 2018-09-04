@@ -46,12 +46,10 @@ module.exports = function (req, res, connection){
 
                 for (var i = 0; i < result.length; i++) {
 
-                    var slide = slides[i];
-
-                    if(slide.type === 'podcast') {
-                        connection.query("SELECT * FROM app_podcasts WHERE id = '" + slide.destination + "'", function(error, result){
+                    if(slides[i].type === 'podcast') {
+                        connection.query("SELECT * FROM app_podcasts WHERE id = '" + slides[i].destination + "'", function(error, result){
                             if(!error)
-                                slide.podcast = result[0];
+                                slides[i].podcast = result[0];
                         });
                     }
 
