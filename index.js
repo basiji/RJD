@@ -21,15 +21,7 @@ app.listen(CONSTANTS.PORT, function(){
 });
 
 // Serve static resources
-app.use(express.static(__dirname + '/html/ASAN'));
-
-// Static resources cache enabled
-app.use(function (req, res, next) {
-    if (req.url.match(/^\/(css|js|img|font)\/.+/)) {
-        res.setHeader('Cache-Control', 'public, max-age=3600'); 
-    }
-    next();
-});
+app.use(express.static(__dirname + '/html/ASAN', {maxAge:36000000}));
 
 // Router versioning
 app.use('/', router_v1);
