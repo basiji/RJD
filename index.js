@@ -21,7 +21,7 @@ app.listen(CONSTANTS.PORT, function(){
 });
 
 // Serve static resources
-app.use(express.static(__dirname + '/html/ASAN', {maxAge:36000000}));
+app.use(express.static(__dirname + '/html/ASAN', {maxAge:86400000*7}));
 
 // Router versioning
 app.use('/', router_v1);
