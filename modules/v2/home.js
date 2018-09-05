@@ -69,6 +69,7 @@ module.exports = function (req, res, connection){
                     shows:shows,
                     slides:slides,
                     buildnumber:2,
+                    version:'1.2.2',
                     update_url:'http://ps4club.ir/RC-4.apk',
                 });
 
