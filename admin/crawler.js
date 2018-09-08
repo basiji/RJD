@@ -61,8 +61,11 @@ connection.query("SELECT * FROM app_shows", function(error, result){
             return;
         }
             
-        
-        for (var i = 0; i < blocks.length - numShows; i++) {
+        var max_number = blocks.length - numShows;
+        if(max_number > 50)
+            max_number = 50;
+
+        for (var i = 0; i < max_number; i++) {
         
         block = blocks[i];
         // Get required information
@@ -71,7 +74,6 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         link = block.rawAttrs.split('"')[1];
         
         // Insert into DB (last 50 records)
-        if(i < 50)
         connection.query("INSERT INTO app_podcasts SET ?", {
             title:title,
             episode:episode,
