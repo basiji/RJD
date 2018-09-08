@@ -70,7 +70,8 @@ connection.query("SELECT * FROM app_shows", function(error, result){
         episode =  block.childNodes[3].childNodes[3].childNodes[0].rawText.split(' ')[1];
         link = block.rawAttrs.split('"')[1];
         
-        // Insert into DB
+        // Insert into DB (last 50 records)
+        if(i < 50)
         connection.query("INSERT INTO app_podcasts SET ?", {
             title:title,
             episode:episode,
