@@ -11,7 +11,7 @@ module.exports = function (req, res, connection){
     var queries = 'id, title, episode, thumb_path, download_path, likes, dislikes, plays, size';
     
     // Featured
-    connection.query("SELECT " + queries + " FROM app_podcasts WHERE featured = 1 ORDER BY id DESC LIMIT 10", function (error, result){
+    connection.query("SELECT " + queries + " FROM app_podcasts WHERE featured = 1 ORDER BY id DESC LIMIT 20", function (error, result){
 
         if(error)
         console.log(error);
@@ -19,7 +19,7 @@ module.exports = function (req, res, connection){
         featured = result;
 
         // Popular
-        connection.query("SELECT " + queries + " FROM app_podcasts WHERE popular = 1 ORDER BY likes DESC LIMIT 10", function(error, result){
+        connection.query("SELECT " + queries + " FROM app_podcasts WHERE popular = 1 ORDER BY id DESC LIMIT 20", function(error, result){
 
             if(error)
             console.log(error);
