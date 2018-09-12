@@ -38,7 +38,7 @@ module.exports = function(connection){
         submitPayment(req, res, connection);
     });
 
-    /* Gateway HTML
+    // Gateway HTML
     router.get('/gateway', function(req, res){
 
         // Set cookie
@@ -47,7 +47,7 @@ module.exports = function(connection){
         res.sendFile(path.join(__dirname, '../html/ASAN', 'index.html'));
         
 
-    });*/
+    });
 
     
     return router;
